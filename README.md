@@ -71,7 +71,75 @@ GMAIL_USER_ID = 'me'
 OPENAI_API_KEY = 'your_openai_api_key'
 OUTPUT_DIR = './output/'
 ```
+### 4. credentials.json 获取步骤
+为了获取 Gmail 邮件，需要配置 Google Cloud 项目，并下载 OAuth2 授权文件 credentials.json。
 
+第一步：打开 Google Cloud Console
+网址：https://console.cloud.google.com/
+
+第二步：创建一个 Project
+左上角 → 选择项目 → 新建项目
+
+名称可自定义：
+
+nginx
+复制
+编辑
+Gmail Interview Tracker
+第三步：启用 Gmail API
+左侧菜单：API & Services → Library
+
+搜索 Gmail API
+
+点击 → 启用
+
+第四步：配置 OAuth 同意屏幕
+左侧菜单：API & Services → OAuth consent screen
+
+选择 External（外部）
+
+填写 App Name（比如 Gmail Interview Tracker）
+
+添加自己的 Gmail 作为 Test User（测试用户）
+
+第五步：创建 OAuth 2.0 Client ID
+左侧菜单：Credentials（凭据）
+
+点击 Create Credentials → OAuth Client ID
+
+Application Type 选择 Desktop App
+
+点击创建
+
+第六步：下载 credentials.json
+Google 会自动下载这个文件，命名类似：
+
+pgsql
+复制
+编辑
+client_secret_xxx.json
+第七步：放到你的项目根目录
+放在：
+
+bash
+复制
+编辑
+gmail_interview_tracker/credentials.json
+（可重命名为 credentials.json）
+
+第八步：首次运行自动授权
+运行：
+
+bash
+复制
+编辑
+python daily_runner.py
+程序会自动打开浏览器进行 OAuth2 登录授权。登录你自己的 Gmail，授权后会在项目目录自动生成：
+
+复制
+编辑
+token.pickle
+这个文件用于保存授权信息，后续不会再弹授权窗口。
 ---
 
 ## 使用说明
